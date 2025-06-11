@@ -1,27 +1,52 @@
 import { NavLink } from "react-router-dom"
+import { Button } from "./ui/button"
+import { ChevronDown, Menu } from "lucide-react"
 const Navbar = () => {
     return (
-        <div className=" w-full flex justify-between items-center bg-gray-800 text-white p-4">
-            <h1 className="text-xl font-bold">Electro<span className="text-red-600">Tech</span></h1>
-            <ul className="flex space-x-4">
-                <NavLink to='/home'>
-                    <li>Home</li>
-                </NavLink>
-                <NavLink to='/gaminglaptops'>
-                    <li>Gaming Laptops</li>
-                </NavLink>
-                <NavLink to='/normallaptops'>
-                    <li>Normal Laptops</li>
-                </NavLink>
-                <NavLink to='/support'>
-                    <li>Support</li>
-                </NavLink>
-            </ul>
-            <div className="flex items-center space-x-4">
-                <button className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Buy Now</button>
-                <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600">Login</button>
+        <nav className="w-full">
+            <div className="w-full bg-white py-2">
+                <div className="container flex justify-between items-center text-black">
+
+                    {/*Sort By Categories*/}
+                        <Button
+                            variant={"ghost"}
+                            size={"lg"}
+                            className="text-black cursor-pointer rounded-none font-medium text-[16px] flex items-center justify-start  space-x-2">
+                            <Menu className="" />
+                            <span>Sort by Categories</span>
+                            <ChevronDown className="w-6 h-6 ml-auto" />
+                        </Button>
+
+                    {/*NavBar*/}
+                    <div className="col_2 flex items-center justify-center text-[16px] font-medium">
+                        <ul className="flex space-x-4">
+                            <NavLink to='/home'>
+                                <li>Home</li>
+                            </NavLink>
+                            <NavLink to='/gaminglaptops'>
+                                <li>Laptops</li>
+                            </NavLink>
+                            <NavLink to='/normallaptops'>
+                                <li>Monitors</li>
+                            </NavLink>
+                            <NavLink to='/support'>
+                                <li>Keyboard</li>
+                            </NavLink>
+                            <NavLink to='/support'>
+                                <li>Accessories</li>
+                            </NavLink>
+                        </ul>
+                    </div>
+
+                    {/*Delivery*/}
+                    <div>
+                        <p className="text-[14px] font-medium">Free Delivery inside the valley</p>
+                    </div>
+                </div>
             </div>
-        </div>
+
+        </nav>
+
     )
 }
 

@@ -1,8 +1,11 @@
-import React from 'react'
 
 const Support = () => {
   return (
-    <div>For Support, do contact us:</div>
+    <div>
+      <form action="">
+        <input type="text" placeholder="Enter your Name" />
+      </form>
+    </div>
   )
 }
 
