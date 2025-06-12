@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { Button } from "./ui/button"
 import { ChevronDown, Menu } from "lucide-react"
+import CategoryPanel from "./CategoryPanel"
 const Navbar = () => {
     return (
         <nav className="w-full">
@@ -8,18 +9,20 @@ const Navbar = () => {
                 <div className="container flex justify-between items-center text-black">
 
                     {/*Sort By Categories*/}
-                        <Button
+                        {/* <Button
                             variant={"ghost"}
                             size={"lg"}
                             className="text-black cursor-pointer rounded-none font-medium text-[16px] flex items-center justify-start  space-x-2">
                             <Menu className="" />
                             <span>Sort by Categories</span>
                             <ChevronDown className="w-6 h-6 ml-auto" />
-                        </Button>
+                        </Button> */}
+                        <CategoryPanel />
 
                     {/*NavBar*/}
                     <div className="col_2 flex items-center justify-center text-[16px] font-medium">
-                        <ul className="flex space-x-4">
+
+                        <ul className="flex space-x-5">
                             <NavLink to='/home'>
                                 <li>Home</li>
                             </NavLink>
@@ -32,6 +35,9 @@ const Navbar = () => {
                             <NavLink to='/support'>
                                 <li>Keyboard</li>
                             </NavLink>
+                            <NavLink to='/mouse'>
+                                <li>Mouse</li>
+                            </NavLink>
                             <NavLink to='/support'>
                                 <li>Accessories</li>
                             </NavLink>
@@ -40,7 +46,7 @@ const Navbar = () => {
 
                     {/*Delivery*/}
                     <div>
-                        <p className="text-[14px] font-medium">Free Delivery inside the valley</p>
+                        <p className="text-[14px] font-[500]">Free Delivery inside the valley</p>
                     </div>
                 </div>
             </div>
