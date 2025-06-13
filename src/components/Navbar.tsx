@@ -6,17 +6,7 @@ const Navbar = () => {
     return (
         <nav className="w-full">
             <div className="w-full bg-white py-2">
-                <div className="container flex justify-between items-center text-black">
-
-                    {/*Sort By Categories*/}
-                        {/* <Button
-                            variant={"ghost"}
-                            size={"lg"}
-                            className="text-black cursor-pointer rounded-none font-medium text-[16px] flex items-center justify-start  space-x-2">
-                            <Menu className="" />
-                            <span>Sort by Categories</span>
-                            <ChevronDown className="w-6 h-6 ml-auto" />
-                        </Button> */}
+                <div className="w-[95%]  m-auto flex justify-between items-center text-black">
                         <CategoryPanel />
 
                     {/*NavBar*/}

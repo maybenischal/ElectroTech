@@ -11,7 +11,7 @@ import {
 const Header = () => {
     return (
         <header className="bg-white border-b-[1px] border-gray-250 py-4">
-            <div className="container flex items-center justify-between text-white gap-4">
+            <div className=" w-[95%]  m-auto flex items-center justify-between text-white gap-4">
 
                 {/* Logo */}
                 <div className="flex-shrink-0">
