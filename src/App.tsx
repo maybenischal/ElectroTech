@@ -1,28 +1,35 @@
 
-import  Home  from './Pages/Home'
+import Home from './Pages/Home'
 import './App.css'
 import Navbar from './components/Navbar'
-import { BrowserRouter } from 'react-router-dom'
-import {Routes, Route} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Support from './Pages/Support'
 import Header from './components/Header'
+import Login from './components/Login'
+import Register from './components/Register'
+import Footer from './components/Footer'
 
 function App() {
+  const location = useLocation();
+  const hideHeaderFooter = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <>
-    <BrowserRouter>
-    <Header />
-     <Navbar />
-    <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/gaming-laptops" element={<div>Gaming Laptops</div>} />
-      <Route path="/normal-laptops" element={<div>Normal Laptops</div>} />
-      <Route path="/support" element={<Support/>} />
-    </Routes>
-    </BrowserRouter>
-     
+      {/* Header and Navbar show unless we are on login or register */}
+      {!hideHeaderFooter && <Header />}
+      {!hideHeaderFooter && <Navbar />}
+
+      {/* Page content changes based on the route */}
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        {/* more routes */}
+      </Routes>
+      <Footer />
     </>
-  )
+  );
 }
+
 
 export default App
