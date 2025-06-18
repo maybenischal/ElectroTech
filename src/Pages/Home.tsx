@@ -1,20 +1,26 @@
-import { Button } from '../components/ui/button';
-import HomePageBanner from '../Image_Assests/HomePageBanner.jpeg';
+import { CornerDownLeft, Headphones, Ship, Truck } from "lucide-react";
+import HomeBanner from "../components/HomeBanner";
+
 const Home = () => {
   return (
     <div>
-      <div className="relative w-[95%] m-auto pt-2 h-120 flex flex-col items-center justify-center my-5">
-        <img src={HomePageBanner} alt="" className='h-full w-full rounded-2xl' />
-        <h1 className='absolute font-bold text-xl text-white bottom-16 left-5'>New Laptop Launched</h1>
-        <Button
-        variant={"secondary"}
-          className="absolute bottom-5 left-5 ">Buy Now</Button>
-      </div>
-      <div className='w-[95%] h-[40px] m-auto flex flex-col items-center justify-center my-5 bg-gradient-to-r from gray-300/80 to-gray-100 rounded-2xl p-5'>
-Hi
+      <HomeBanner />
+      <div className="flex flex-row gap-10 m-4 items-center justify-center bg-gray-100 px-4">
+        <div className="h-48 flex  flex-col items-center justify-center text-lg rounded-lg">
+          <Truck className="w-10 h-10 mr-2" />
+          Free Shipping All Over Nepal
+        </div>
+        <div className="h-48 flex  flex-col items-center justify-center text-lg rounded-lg">
+          <CornerDownLeft className="w-10 h-10 mr-2" />
+          Easy Returns
+        </div>
+        <div className="h-48 flex  flex-col items-center justify-center text-lg rounded-lg">
+          <Headphones className="w-10 h-10 mr-2" />
+          24/7 Customer Support
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
