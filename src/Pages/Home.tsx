@@ -23,10 +23,24 @@ const Home = () => {
           24/7 Customer Support
         </div>
       </div>
+
+      {/*Our Product Banner*/}
       <div className=" w-[95%] mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Our Products
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-8">Special Offers</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className=" w-[95%] mx-auto px-4 py-8">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {products.map((product) => (
             <ProductCard
