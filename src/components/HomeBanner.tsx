@@ -79,6 +79,7 @@ const HomeBanner = () => {
 
       {/* Bottom Section: PC Build, MacBook Deals, Lenovo Legion */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
         {/* PC Build Promotion Card */}
         <div className="flex flex-col justify-center items-center text-center bg-yellow-50 rounded-lg shadow-xl p-8 py-12">
           <h2 className="text-3xl font-bold text-gray-800 mb-4 leading-tight">
@@ -131,7 +132,7 @@ const HomeBanner = () => {
         <div
           className="relative bg-white rounded-lg shadow-xl overflow-hidden min-h-[250px] flex flex-col justify-end p-6"
           style={{
-            backgroundImage: `url('https://placehold.co/800x500/333333/eeeeee?text=Gaming+PC')`,
+            backgroundImage: `url('/Images/Banner1.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -146,15 +147,10 @@ const HomeBanner = () => {
 
           <div className="relative z-10 text-white flex flex-col items-start">
             <img
-              src="https://placehold.co/100x25/ffffff/000000?text=Lenovo_Logo"
-              alt="Lenovo Logo"
+              src="/Images/LenovoLogo.png"
+              // alt="Lenovo Logo"
               className="mb-2 h-6 object-contain"
             />
-            <h2 className="text-lg font-semibold mb-1">
-              POWER. PRECISION.
-              <br />
-              PERFECTION.
-            </h2>
             <h3 className="text-xl font-bold mb-2">Legion 7i 6i RX9</h3>
             <p className="text-sm">AI-Powered Gaming PC</p>
           </div>

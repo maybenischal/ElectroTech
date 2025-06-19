@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Lenovo IdeaPad Slim 3",
+        "price": 549.99,
+        "image": "/Images/Banner1.png"
+    },
+    {
+        "id": 2,
+        "name": "HP Pavilion 15",
+        "price": 649.99,
+        "image": "/Images/Banner1.png"
+    },
+    {
+        "id": 3,
+        "name": "Dell Inspiron 14",
+        "price": 599.99,
+        "image": "/Images/Banner1.png"
+    },
+    {
+        "id": 4,
+        "name": "ASUS VivoBook S14",
+        "price": 699.99,
+        "image": "/Images/Banner1.png"
+    },
+    {
+        "id": 5,
+        "name": "Acer Aspire 5",
+        "price": 499.99,
+        "image": "/Images/Banner1.png"
+    }
+]
