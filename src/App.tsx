@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      {/* Header and Navbar show unless we are on login or register */}
+      {/* Header and Navbar show unless we are on login or register page */}
       {!hideHeaderFooter && <Header />}
       {!hideHeaderFooter && <Navbar />}
 
