@@ -23,8 +23,9 @@ const Home = () => {
         </div>
       </div>
 
-<<<<<<< HEAD
       <LaptopSlider />
+      {/* Laptop Offer Section */}
+
       <div className="w-full flex justify-center px-2 py-4 mt-4 bg-[#eaeaea]">
         <div className="w-full md:w-[95%] flex flex-col md:flex-row items-center justify-center gap-6">
           <img
@@ -37,34 +38,6 @@ const Home = () => {
             alt="40% Off"
             className="w-full md:w-1/2 object-contain rounded-sm"
           />
-=======
-      {/*Our Product Banner*/}
-      <div className=" w-[95%] mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Special Offers</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className=" w-[95%] mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-            />
-          ))}
->>>>>>> eca3bafa9d7021efc225e8cbf5add150217849a0
         </div>
       </div>
 
