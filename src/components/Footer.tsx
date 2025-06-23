@@ -1,14 +1,13 @@
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-        <a
-          className="text-[#60768a] text-base font-normal leading-normal min-w-40"
-          href="#"
-        >
+        <NavLink to="/about" className="text-[#60768a] text-base font-normal leading-normal min-w-40">
           About Us
-        </a>
-        <a
+        </NavLink>
+        {/* <a
           className="text-[#60768a] text-base font-normal leading-normal min-w-40"
           href="#"
         >
@@ -31,15 +30,15 @@ const Footer = () => {
           href="#"
         >
           Terms of Service
-        </a>
-      </div>
+        </a> */}
+      </div >
       <p>
         <div className="text-center text-[#60768a] text-base font-normal leading-normal mt-6">
           &copy; 2021-{new Date().getFullYear()} ElectroTech All rights
           reserved.
         </div>
       </p>
-    </div>
+    </div >
   );
 };
 

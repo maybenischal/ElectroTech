@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "Lenovo IdeaPad Slim 3",
+        "name": "ASUS ROG Strix G16 G615LR 2025",
         "price": 549.99,
         "image": "/Images/Banner1.png"
     },
@@ -25,6 +25,12 @@
     },
     {
         "id": 5,
+        "name": "Acer Aspire 5",
+        "price": 499.99,
+        "image": "/Images/Banner1.png"
+    },
+    {
+        "id": 6,
         "name": "Acer Aspire 5",
         "price": 499.99,
         "image": "/Images/Banner1.png"

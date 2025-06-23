@@ -3,11 +3,11 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import Support from "./Pages/Support";
 import Header from "./components/Header";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Footer from "./components/Footer";
+import Aboutus from "./Pages/Aboutus";
+import Laptop from "./Pages/Laptop";
 
 function App() {
   const location = useLocation();
@@ -25,6 +25,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<Aboutus />} />
+        <Route path="/laptops" element={<Laptop />} />
         {/* more routes */}
       </Routes>
       <Footer />
