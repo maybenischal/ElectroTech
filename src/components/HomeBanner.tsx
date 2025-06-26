@@ -147,7 +147,7 @@ const HomeBanner = () => {
 
           <div className="relative z-10 text-white flex flex-col items-start">
             <img
-              src="/Images/LenovoLogo.png"
+              src="Images/LenovoLogo.png"
               // alt="Lenovo Logo"
               className="mb-2 h-6 object-contain"
             />
