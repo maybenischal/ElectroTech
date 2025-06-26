@@ -7,7 +7,7 @@ const Footer = () => {
         <NavLink to="/about" className="text-[#60768a] text-base font-normal leading-normal min-w-40">
           About Us
         </NavLink>
-        {/* <a
+        <a
           className="text-[#60768a] text-base font-normal leading-normal min-w-40"
           href="#"
         >
@@ -30,10 +30,10 @@ const Footer = () => {
           href="#"
         >
           Terms of Service
-        </a> */}
+        </a>
       </div >
       <p>
-        <div className="text-center text-[#60768a] text-base font-normal leading-normal mt-6">
+        <div className="text-center text-[#60768a]  bg-blue-950 text-base font-normal leading-normal mt-4">
           &copy; 2021-{new Date().getFullYear()} ElectroTech All rights
           reserved.
         </div>
