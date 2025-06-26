@@ -32,12 +32,11 @@ const Footer = () => {
           Terms of Service
         </a>
       </div >
-      <p>
-        <div className="text-center text-[#60768a]  bg-blue-950 text-base font-normal leading-normal mt-4">
-          &copy; 2021-{new Date().getFullYear()} ElectroTech All rights
-          reserved.
-        </div>
-      </p>
+      <div className="text-center text-[#60768a]  bg-blue-950 text-base font-normal leading-normal mt-4">
+        &copy; 2021-{new Date().getFullYear()} ElectroTech All rights
+        reserved.
+      </div>
+
     </div >
   );
 };

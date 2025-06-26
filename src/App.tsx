@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Footer from "./components/Footer";
 import Aboutus from "./Pages/Aboutus";
 import Laptop from "./Pages/Laptop";
+import Register from "./components/Register";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const location = useLocation();
@@ -16,6 +18,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer position="top-right" autoClose={3000} />
       {/* Header and Navbar show unless we are on login or register page */}
       {!hideHeaderFooter && <Header />}
       {!hideHeaderFooter && <Navbar />}
@@ -27,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<Aboutus />} />
         <Route path="/laptops" element={<Laptop />} />
+        <Route path="/register" element={<Register />} />
         {/* more routes */}
       </Routes>
       <Footer />
