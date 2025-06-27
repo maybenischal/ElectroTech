@@ -12,16 +12,18 @@ import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const location = useLocation();
-  const hideHeaderFooter =
-    location.pathname === "/login" || location.pathname === "/register";
+  // const location = useLocation();
+  // const hideHeaderFooter =
+  //   location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <>
-    <ToastContainer position="top-right" autoClose={3000} />
-      {/* Header and Navbar show unless we are on login or register page */}
+      <ToastContainer position="top-right" autoClose={3000} />
+      {/* Header and Navbar show unless we are on login or register page
       {!hideHeaderFooter && <Header />}
-      {!hideHeaderFooter && <Navbar />}
+      {!hideHeaderFooter && <Navbar />} */}
+      <Header />
+      <Navbar />
 
       {/* Page content changes based on the route */}
       <Routes>
@@ -31,7 +33,6 @@ function App() {
         <Route path="/about" element={<Aboutus />} />
         <Route path="/laptops" element={<Laptop />} />
         <Route path="/register" element={<Register />} />
-        {/* more routes */}
       </Routes>
       <Footer />
     </>

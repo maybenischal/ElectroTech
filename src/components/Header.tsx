@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Searchbar from "./Searchbar";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart, User } from "lucide-react";
 import { Badge } from "./ui/badge";
 import {
   Tooltip,
@@ -22,7 +22,7 @@ const Header = () => {
         </div>
 
         {/* Searchbar */}
-        <div className="flex-grow max-w-[700px] w-full">
+        <div className="flex-grow max-w-[500px] w-full">
           <Searchbar />
         </div>
 
@@ -30,13 +30,9 @@ const Header = () => {
         <div className="flex-shrink-0 flex items-center gap-6">
           {/* Login / Register */}
           <div className="flex items-center text-black font-[500] text-[15px]">
-            <NavLink to="/login" className="hover:text-red-600">
-              Login
-            </NavLink>
-            <span className="mx-2">|</span>
-            <NavLink to="/register" className="hover:text-red-600">
-              Register
-            </NavLink>
+            <Link to="/login">
+              <User className="w-8 h-8 cursor-pointer" />
+            </Link>
           </div>
 
           {/* Wishlist */}
