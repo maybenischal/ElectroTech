@@ -1,6 +1,7 @@
 import { CornerDownLeft, Headphones, Laptop, Truck } from "lucide-react";
 import HomeBanner from "../components/HomeBanner";
 import LaptopSlider from "../components/LaptopSlider";
+import FeaturedProduct from "../components/FeaturedProducts";
 
 const Home = () => {
   return (
@@ -41,7 +42,7 @@ const Home = () => {
         </div>
       </div>
 
-
+<FeaturedProduct />
 
     </div>
   );
