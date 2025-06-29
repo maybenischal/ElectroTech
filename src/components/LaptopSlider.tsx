@@ -1,38 +1,55 @@
-import { NavLink } from "react-router-dom"
+// LaptopSlider.tsx
+import { NavLink } from "react-router-dom";
 import ProductCard from "./ProductCard";
-import products from "../data/products";
+import products from "../data/products.json"; // adjust path as needed
 import { Button } from "./ui/button";
 
-
 const LaptopSlider = () => {
-    return (
-        <div>
-            <div className="w-[95%] mx-auto px-4 flex flex-col items-center gap-8">
-                <h2 className="text-3xl font-bold text-center text-gray-800">Laptops</h2>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 justify-center w-full">
-                    {products.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            name={product.name}
-                            price={product.price}
-                            image={product.image}
-                        />
-                    ))}
-                </div>
-
-                <NavLink to="/laptops">
-                    <Button
-                        variant="outline"
-                        className="text-sm font-semibold px-5 rounded-none border-gray-500 hover:bg-gray-100 transition"
-                    >
-                        View More
-                    </Button>
-                </NavLink>
-            </div>
-
+  return (
+    <div>
+      <div className="w-[90%] mx-auto flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center mt-10">
+          <p className="text-3xl font-medium">Latest Products</p>
+          <div className="w-28 h-0.5 bg-orange-600 mt-2"></div>
         </div>
-    )
-}
 
-export default LaptopSlider
+        {/* <div className="w-full mx-auto flex items-center  justify-center gap-8 overflow-x-auto">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              image={product.image}
+              rating={product.rating}
+            />
+          ))}
+        </div> */}
+
+        <div className="w-full grid lg:grid-cols-5 gap-4">
+          {products.slice(0, 10).map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              image={product.image}
+              rating={product.rating}
+            />
+          ))}
+        </div>
+
+        <NavLink to="/laptops">
+          <Button
+            variant="outline"
+            className="text-sm font-semibold px-5 rounded-none border-gray-500 hover:bg-gray-100 transition"
+          >
+            View More
+          </Button>
+        </NavLink>
+      </div>
+    </div>
+  );
+};
+
+export default LaptopSlider;

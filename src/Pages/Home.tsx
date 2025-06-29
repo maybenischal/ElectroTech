@@ -23,8 +23,8 @@ const Home = () => {
           24/7 Customer Support
         </div>
       </div>
+      <FeaturedProduct />
 
-      <LaptopSlider />
       {/* Laptop Offer Section */}
 
       <div className="w-full flex justify-center px-2 py-4 mt-4 bg-[#eaeaea]">
@@ -42,8 +42,7 @@ const Home = () => {
         </div>
       </div>
 
-<FeaturedProduct />
-
+      <LaptopSlider />
     </div>
   );
 };
