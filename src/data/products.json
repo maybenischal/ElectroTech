@@ -62,21 +62,5 @@
     "image": "/Images/Banner1.png",
     "rating": 4.3,
     "description": "The Dell Inspiron 14 is a versatile and reliable laptop designed for everyday productivity. With a sleek design and efficient performance, it's perfect for work, study, and entertainment on the go."
-  },
-  {
-    "id": 9,
-    "name": "ASUS VivoBook S14",
-    "price": 699.99,
-    "image": "/Images/Banner1.png",
-    "rating": 4.5,
-    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14. This ultra-portable laptop combines a vibrant display, powerful components, and a stylish design for an exceptional user experience."
-  },
-  {
-    "id": 10,
-    "name": "Acer Aspire 5",
-    "price": 499.99,
-    "image": "/Images/Banner1.png",
-    "rating": 4.2,
-    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value. Ideal for daily tasks, Browse, and light multimedia, it's a solid choice for students and home users looking for reliability."
   }
 ]

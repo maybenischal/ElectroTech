@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { Button } from "./ui/button";
-import { ChevronDown, Menu } from "lucide-react";
 import CategoryPanel from "./CategoryPanel";
 const Navbar = () => {
   return (

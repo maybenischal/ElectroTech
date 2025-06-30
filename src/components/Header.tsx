@@ -1,64 +1,129 @@
-import { Link, NavLink } from "react-router-dom";
-import Searchbar from "./Searchbar";
-import { Heart, ShoppingCart, User } from "lucide-react";
-import { Badge } from "./ui/badge";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { useState } from "react";
+import { Heart, ShoppingCart, User, Search, X } from "lucide-react";
+
+// Mock components for demonstration
+const Badge = ({ className, children }) => (
+  <span className={className}>{children}</span>
+);
+
+const Tooltip = ({ children }) => children;
+const TooltipContent = ({ children }) => null;
+const TooltipTrigger = ({ children, asChild }) => children;
+
+const Searchbar = () => (
+  <div className="relative w-full">
+    <input
+      type="text"
+      placeholder="Search products..."
+      className="w-full px-4 py-2 pl-10 pr-4 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    />
+    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+  </div>
+);
 
 const Header = () => {
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  // Define consistent icon sizing and color
+  // Increased size for all icons to make them more prominent, matching the visual weight of the badge-adorned icons
+  const iconClasses = "w-6 h-6 sm:w-7 sm:h-7 text-gray-800"; 
+
   return (
-    <header className="bg-white border-b-[1px] border-gray-250 py-4  sticky top-0 z-50 ">
-      <div className=" w-[95%]  m-auto flex items-center justify-between text-white gap-4">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <NavLink to={"/"}>
-            <h1 className="text-3xl font-extrabold text-black px-4">
-              Electro<span className="text-red-600">Tech</span>
-            </h1>
-          </NavLink>
-        </div>
-
-        {/* Searchbar */}
-        <div className="flex-grow max-w-[500px] w-full">
-          <Searchbar />
-        </div>
-
-        {/* Auth Links and Icons */}
-        <div className="flex-shrink-0 flex items-center gap-6">
-          {/* Login / Register */}
-          <div className="flex items-center text-black font-[500] text-[15px]">
-            <Link to="/login">
-              <User className="w-8 h-8 cursor-pointer" />
-            </Link>
+    <header className="bg-white border-b border-gray-200 py-3 sm:py-4 sticky top-0 z-50 shadow-sm">
+      <div className="w-[95%] mx-auto">
+        {/* Main header row */}
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <a href="/" className="block">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-black px-1 sm:px-2">
+                Electro<span className="text-red-600">Tech</span>
+              </h1>
+            </a>
           </div>
 
-          {/* Wishlist */}
-          <div className="relative">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Heart className="text-gray-800 w-6 h-6 cursor-pointer" />
-              </TooltipTrigger>
-              <TooltipContent>Wishlist</TooltipContent>
-            </Tooltip>
-            <Badge className="absolute -top-2 -right-2 bg-blue-500 h-5 min-w-[1.25rem] rounded-full px-1 tabular-nums flex items-center justify-center text-xs font-semibold">
-              8
-            </Badge>
+          {/* Desktop Search - Hidden on mobile */}
+          <div className="hidden md:flex flex-grow max-w-lg mx-4">
+            <Searchbar />
           </div>
 
-          {/* Shopping Cart */}
-          <div className="relative">
+          {/* Mobile Search - Expands inline */}
+          <div className="md:hidden flex-1 max-w-sm mx-2">
+            {!showMobileSearch ? (
+              <button
+                aria-label="Open search"
+                onClick={() => setShowMobileSearch(true)}
+                className="p-2 text-gray-700 hover:text-gray-900 transition-colors rounded-full hover:bg-gray-100"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+            ) : (
+              <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <Searchbar />
+                </div>
+                <button
+                  aria-label="Close search"
+                  onClick={() => setShowMobileSearch(false)}
+                  className="p-1 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Action Icons */}
+          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+            {/* Login */}
             <Tooltip>
               <TooltipTrigger asChild>
-                <ShoppingCart className="text-gray-800 w-6 h-6 cursor-pointer" />
+                <a
+                  href="/login"
+                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  aria-label="Login"
+                >
+                  <User className={iconClasses} /> {/* Using consistent classes */}
+                </a>
               </TooltipTrigger>
-              <TooltipContent>Cart</TooltipContent>
+              <TooltipContent>Login</TooltipContent>
             </Tooltip>
-            <Badge className="absolute -top-2 -right-2 bg-blue-500 h-5 min-w-[1.25rem] rounded-full px-1 tabular-nums flex items-center justify-center text-xs font-semibold">
-              8
-            </Badge>
+
+            {/* Wishlist */}
+            <div className="relative">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Wishlist"
+                  >
+                    <Heart className={iconClasses} /> {/* Using consistent classes */}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>Wishlist</TooltipContent>
+              </Tooltip>
+              <Badge className="absolute -top-1 -right-1 bg-blue-500 text-white h-4 min-w-[1rem] sm:h-5 sm:min-w-[1.25rem] rounded-full px-1 flex items-center justify-center text-xs font-semibold">
+                8
+              </Badge>
+            </div>
+
+            {/* Cart */}
+            <div className="relative">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Shopping cart"
+                  >
+                    <ShoppingCart className={iconClasses} /> {/* Using consistent classes */}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>Cart</TooltipContent>
+              </Tooltip>
+              <Badge className="absolute -top-1 -right-1 bg-blue-500 text-white h-4 min-w-[1rem] sm:h-5 sm:min-w-[1.25rem] rounded-full px-1 flex items-center justify-center text-xs font-semibold">
+                8
+              </Badge>
+            </div>
           </div>
         </div>
       </div>
