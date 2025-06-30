@@ -7,17 +7,16 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import Aboutus from "./Pages/Aboutus";
-import Laptop from "./Pages/Laptop";
+import Laptop from "./Pages/Products";
 import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
+import Products from "./Pages/Products";
 
 function App() {
-
-
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
-  
+
       <Header />
       <Navbar />
 
@@ -27,7 +26,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<Aboutus />} />
-        <Route path="/laptops" element={<Laptop />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />

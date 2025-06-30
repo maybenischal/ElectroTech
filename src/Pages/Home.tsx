@@ -1,13 +1,12 @@
 import HomeBanner from "../components/HomeBanner";
-import LaptopSlider from "../components/LaptopSlider";
 import FeaturedProduct from "../components/FeaturedProducts";
 import Features from "../components/Features";
+import LatestProduct from "../components/LatestProduct";
 
 const Home = () => {
   return (
     <div>
       <HomeBanner />
-
 
       <FeaturedProduct />
 
@@ -28,7 +27,7 @@ const Home = () => {
         </div>
       </div>
 
-      <LaptopSlider />
+      <LatestProduct />
       <Features />
     </div>
   );

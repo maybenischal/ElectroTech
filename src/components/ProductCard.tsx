@@ -23,7 +23,7 @@ const ProductCard = ({
   return (
     <div className="relative bg-white w-[300px] p-4 flex flex-col items-start gap-4 rounded-md hover:shadow-lg transition-all">
       {/* 👇 Gray background behind image */}
-      <div className="w-full h-50 bg-[#f2f2f3] rounded-md flex items-center justify-center overflow-hidden">
+      <div className="w-full h-50 bg-[#f2f2f3] rounded-md flex items-center justify-center  cursor-pointer overflow-hidden">
         <img src={image} alt={name} className="h-full object-contain" />
       </div>
 
@@ -54,7 +54,11 @@ const ProductCard = ({
         </div>
         <div className="flex items-center justify-between gap-8 w-full">
           <p className="text-base font-bold mt-1">${price.toFixed(2)}</p>
-          <Button variant={"outline"} size={"sm"} className="px-2 ">
+          <Button
+            variant={"outline"}
+            size={"sm"}
+            className="px-2 cursor-pointer"
+          >
             Buy Now
           </Button>
         </div>

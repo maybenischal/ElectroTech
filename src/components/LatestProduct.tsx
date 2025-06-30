@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import products from "../data/products.json"; // adjust path as needed
 import { Button } from "./ui/button";
 
-const LaptopSlider = () => {
+const LatestProduct = () => {
   return (
     <div>
       <div className="w-[95%] m-auto flex flex-col items-center justify-center">
@@ -13,7 +13,7 @@ const LaptopSlider = () => {
           <div className="w-28 h-0.5 bg-orange-600 mt-2"></div>
         </div>
 
-<div className="flex flex-wrap justify-center gap-5 m-6">
+        <div className="flex flex-wrap justify-center gap-5 m-6">
           {products.slice(0, 8).map((product) => (
             <ProductCard
               key={product.id}
@@ -39,4 +39,4 @@ const LaptopSlider = () => {
   );
 };
 
-export default LaptopSlider;
+export default LatestProduct;
