@@ -3,13 +3,24 @@ import { Heart, ShoppingCart, User, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Mock components for demonstration
-const Badge = ({ className, children }) => (
+interface BadgeProps {
+  className?: string; // className is optional in some cases, hence the '?'
+  children: React.ReactNode;
+}
+
+const Badge = ({ className, children }: BadgeProps) => (
   <span className={className}>{children}</span>
 );
 
-const Tooltip = ({ children }) => children;
-const TooltipContent = ({ children }) => null;
-const TooltipTrigger = ({ children, asChild }) => children;
+const Tooltip = ({ children }: { children: React.ReactNode }) => children;
+const TooltipContent = ({ children }: { children: React.ReactNode }) => null;
+const TooltipTrigger = ({
+  children,
+  asChild,
+}: {
+  children: React.ReactNode;
+  asChild?: boolean;
+}) => children;
 
 const Searchbar = () => (
   <div className="relative w-full">

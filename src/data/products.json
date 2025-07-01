@@ -2,65 +2,161 @@
   {
     "id": 1,
     "name": "ASUS ROG G16 2025",
+    "type": "Laptops",
+    "brand": "ASUS",
     "price": 549.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025. Featuring cutting-edge processors and graphics, it delivers an immersive and fluid gaming experience for serious enthusiasts."
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
   },
   {
     "id": 2,
     "name": "Apple Buds Pro 2",
+    "type": "Airbuds",
+    "brand": "Apple",
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2. These earbuds offer superior noise cancellation, crystal-clear calls, and a comfortable, secure fit for all-day listening."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
   },
   {
     "id": 3,
     "name": "Dell Inspiron 14",
+    "type": "Laptops",
+    "brand": "DELL",
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop designed for everyday productivity. With a sleek design and efficient performance, it's perfect for work, study, and entertainment on the go."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
   },
   {
     "id": 4,
     "name": "ASUS VivoBook S14",
+    "type": "Laptops",
+    "brand": "ASUS",
     "price": 699.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14. This ultra-portable laptop combines a vibrant display, powerful components, and a stylish design for an exceptional user experience."
+    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14..."
   },
   {
     "id": 5,
     "name": "Acer Aspire 5",
+    "type": "Laptops",
+    "brand": "Acer",
     "price": 499.99,
     "image": "/Images/Banner1.png",
     "rating": 4.2,
-    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value. Ideal for daily tasks, Browse, and light multimedia, it's a solid choice for students and home users looking for reliability."
+    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value..."
   },
   {
     "id": 6,
     "name": "ASUS ROG G16 2025",
+    "type": "Laptops",
+    "brand": "ASUS",
     "price": 549.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025. Featuring cutting-edge processors and graphics, it delivers an immersive and fluid gaming experience for serious enthusiasts."
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
   },
   {
     "id": 7,
     "name": "Apple Buds Pro 2",
+    "type": "Airbuds",
+    "brand": "Apple",
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2. These earbuds offer superior noise cancellation, crystal-clear calls, and a comfortable, secure fit for all-day listening."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
   },
   {
     "id": 8,
     "name": "Dell Inspiron 14",
+    "type": "Laptops",
+    "brand": "DELL",
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop designed for everyday productivity. With a sleek design and efficient performance, it's perfect for work, study, and entertainment on the go."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+  },
+  {
+    "id": 9,
+    "name": "ASUS ROG G16 2025",
+    "type": "Laptops",
+    "brand": "ASUS",
+    "price": 549.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.5,
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+  },
+  {
+    "id": 10,
+    "name": "Apple Buds Pro 2",
+    "type": "Airbuds",
+    "brand": "Apple",
+    "price": 649.99,
+    "image": "/Images/Apple_Buds_1.png",
+    "rating": 4.4,
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+  },
+  {
+    "id": 11,
+    "name": "Dell Inspiron 14",
+    "type": "Laptops",
+    "brand": "DELL",
+    "price": 599.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.3,
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+  },
+  {
+    "id": 12,
+    "name": "ASUS VivoBook S14",
+    "type": "Laptops",
+    "brand": "ASUS",
+    "price": 699.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.5,
+    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14..."
+  },
+  {
+    "id": 13,
+    "name": "Acer Aspire 5",
+    "type": "Laptops",
+    "brand": "Acer",
+    "price": 499.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.2,
+    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value..."
+  },
+  {
+    "id": 14,
+    "name": "ASUS ROG G16 2025",
+    "type": "Laptops",
+    "brand": "ASUS",
+    "price": 549.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.5,
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+  },
+  {
+    "id": 15,
+    "name": "Apple Buds Pro 2",
+    "type": "Airbuds",
+    "brand": "Apple",
+    "price": 649.99,
+    "image": "/Images/Apple_Buds_1.png",
+    "rating": 4.4,
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+  },
+  {
+    "id": 16,
+    "name": "Dell Inspiron 14",
+    "type": "Laptops",
+    "brand": "DELL",
+    "price": 599.99,
+    "image": "/Images/Banner1.png",
+    "rating": 4.3,
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
   }
 ]
