@@ -7,7 +7,14 @@
     "price": 549.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+    "description": "Featuring cutting-edge graphics, fast processors,and bold designs, this laptop and gear deliver an elite gaming experience with no compromises.",
+    "specifications": {
+      "CPU/Processor": "Intel Core i7-13650HX",
+      "RAM": "16GB DDR5",
+      "SSD/Storage": "1TB PCIe Gen4 SSD",
+      "Graphics Card": "NVIDIA GeForce RTX 4060",
+      "Display": "16-inch FHD (1920 x 1080) 165Hz"
+    }
   },
   {
     "id": 2,
@@ -17,7 +24,12 @@
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2...",
+    "specifications": {
+      "Connectivity": "Bluetooth 5.3",
+      "Noise Cancellation": "Active Noise Cancellation",
+      "Battery Life": "Up to 6 hours (buds), 30 hours (case)"
+    }
   },
   {
     "id": 3,
@@ -27,7 +39,13 @@
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 5 7530U",
+      "RAM": "8GB DDR4",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14-inch FHD (1920 x 1080)"
+    }
   },
   {
     "id": 4,
@@ -37,7 +55,13 @@
     "price": 699.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14..."
+    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14...",
+    "specifications": {
+      "CPU/Processor": "Intel Core i5-12500H",
+      "RAM": "16GB LPDDR5",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14.5-inch 2.8K OLED"
+    }
   },
   {
     "id": 5,
@@ -47,17 +71,35 @@
     "price": 499.99,
     "image": "/Images/Banner1.png",
     "rating": 4.2,
-    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value..."
+    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 3 7320U",
+      "RAM": "8GB LPDDR5",
+      "SSD/Storage": "256GB NVMe SSD",
+      "Display": "15.6-inch FHD (1920 x 1080)"
+    }
   },
   {
     "id": 6,
-    "name": "ASUS ROG G16 2025",
+    "name": "Acer Nitro V 16 2024",
     "type": "Laptops",
-    "brand": "ASUS",
-    "price": 549.99,
-    "image": "/Images/Banner1.png",
-    "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+    "brand": "Acer",
+    "price": 1199.99,
+    "image": "/Images/Acer_Nitro_V_16_2024.png",
+    "rating": 4.7,
+    "description": "Powerful gaming laptop with AMD Ryzen processor and NVIDIA RTX graphics.",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 7 8845HS Processor with 8-cores, 16-threads, 16MB L3 Cache and up to 5.1GHz Max Turbo Boost",
+      "RAM": "16GB DDR5-5600MHz RAM; Upgradeable to 64GB",
+      "SSD/Storage": "512GB NVMe Gen4 SSD; Upgradeable",
+      "Graphics Card": "NVIDIA GeForce RTX 4050 Graphics Card with 6GB GDDR6 VRAM",
+      "Display": "16-inch WUXGA (1920 x 1200) IPS Display with 16:10 aspect ratio, 165Hz Refresh Rate, 3ms Response Time and G-Sync Support",
+      "Audio": "DTS® X: Ultra Audio, featuring optimized Bass, Loudness, Speaker Protection with up to 6 custom content modes by smart amplifier",
+      "Built-in Microphone": "Yes",
+      "I/O Ports": "1 x USB Type-C™ port supporting; 2 x USB Standard-A ports, supporting; 1 x HDMI® 2.1 port with HDCP support; 1 x 3.5 mm headphone/speaker jack, supporting headsets with built-in microphone; 1 x Gigabit Ethernet (RJ-45) port",
+      "Keyboard": "Amber Color Backlit Keyboard",
+      "Wireless Connectivity": "Wi-Fi 6E Wireless LAN; 802.11 a/b/g/n/ac/ax; Band: 2.4 GHz, 5 GHz, and 6 GHz; 2x2 MU-MIMO technology"
+    }
   },
   {
     "id": 7,
@@ -67,7 +109,12 @@
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2...",
+    "specifications": {
+      "Connectivity": "Bluetooth 5.3",
+      "Noise Cancellation": "Active Noise Cancellation",
+      "Battery Life": "Up to 6 hours (buds), 30 hours (case)"
+    }
   },
   {
     "id": 8,
@@ -77,7 +124,13 @@
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 5 7530U",
+      "RAM": "8GB DDR4",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14-inch FHD (1920 x 1080)"
+    }
   },
   {
     "id": 9,
@@ -87,7 +140,14 @@
     "price": 549.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025...",
+    "specifications": {
+      "CPU/Processor": "Intel Core i7-13650HX",
+      "RAM": "16GB DDR5",
+      "SSD/Storage": "1TB PCIe Gen4 SSD",
+      "Graphics Card": "NVIDIA GeForce RTX 4060",
+      "Display": "16-inch FHD (1920 x 1080) 165Hz"
+    }
   },
   {
     "id": 10,
@@ -97,7 +157,12 @@
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2...",
+    "specifications": {
+      "Connectivity": "Bluetooth 5.3",
+      "Noise Cancellation": "Active Noise Cancellation",
+      "Battery Life": "Up to 6 hours (buds), 30 hours (case)"
+    }
   },
   {
     "id": 11,
@@ -107,7 +172,13 @@
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 5 7530U",
+      "RAM": "8GB DDR4",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14-inch FHD (1920 x 1080)"
+    }
   },
   {
     "id": 12,
@@ -117,7 +188,13 @@
     "price": 699.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14..."
+    "description": "Unleash your creativity and productivity with the ASUS VivoBook S14...",
+    "specifications": {
+      "CPU/Processor": "Intel Core i5-12500H",
+      "RAM": "16GB LPDDR5",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14.5-inch 2.8K OLED"
+    }
   },
   {
     "id": 13,
@@ -127,7 +204,13 @@
     "price": 499.99,
     "image": "/Images/Banner1.png",
     "rating": 4.2,
-    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value..."
+    "description": "The Acer Aspire 5 offers a fantastic balance of performance and value...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 3 7320U",
+      "RAM": "8GB LPDDR5",
+      "SSD/Storage": "256GB NVMe SSD",
+      "Display": "15.6-inch FHD (1920 x 1080)"
+    }
   },
   {
     "id": 14,
@@ -137,7 +220,14 @@
     "price": 549.99,
     "image": "/Images/Banner1.png",
     "rating": 4.5,
-    "description": "Experience peak gaming performance with the ASUS ROG G16 2025..."
+    "description": "Experience peak gaming performance with the ASUS ROG G16 2025...",
+    "specifications": {
+      "CPU/Processor": "Intel Core i7-13650HX",
+      "RAM": "16GB DDR5",
+      "SSD/Storage": "1TB PCIe Gen4 SSD",
+      "Graphics Card": "NVIDIA GeForce RTX 4060",
+      "Display": "16-inch FHD (1920 x 1080) 165Hz"
+    }
   },
   {
     "id": 15,
@@ -147,7 +237,12 @@
     "price": 649.99,
     "image": "/Images/Apple_Buds_1.png",
     "rating": 4.4,
-    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2..."
+    "description": "Immerse yourself in rich, high-fidelity audio with the Apple Buds Pro 2...",
+    "specifications": {
+      "Connectivity": "Bluetooth 5.3",
+      "Noise Cancellation": "Active Noise Cancellation",
+      "Battery Life": "Up to 6 hours (buds), 30 hours (case)"
+    }
   },
   {
     "id": 16,
@@ -157,6 +252,12 @@
     "price": 599.99,
     "image": "/Images/Banner1.png",
     "rating": 4.3,
-    "description": "The Dell Inspiron 14 is a versatile and reliable laptop..."
+    "description": "The Dell Inspiron 14 is a versatile and reliable laptop...",
+    "specifications": {
+      "CPU/Processor": "AMD Ryzen 5 7530U",
+      "RAM": "8GB DDR4",
+      "SSD/Storage": "512GB NVMe SSD",
+      "Display": "14-inch FHD (1920 x 1080)"
+    }
   }
 ]

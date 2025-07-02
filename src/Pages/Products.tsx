@@ -95,6 +95,7 @@ const Products = () => {
           {filteredProducts.slice(0, 16).map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id.toString()}
               name={product.name}
               description={product.description}
               price={product.price}
