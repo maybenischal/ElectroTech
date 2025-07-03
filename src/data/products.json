@@ -6,7 +6,7 @@
     "brand": "ASUS",
     "price": 549.99,
     "image": "/Images/Banner1.png",
-    "rating": 4.5,
+    
     "description": "Featuring cutting-edge graphics, fast processors,and bold designs, this laptop and gear deliver an elite gaming experience with no compromises.",
     "specifications": {
       "CPU/Processor": "Intel Core i7-13650HX",

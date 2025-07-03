@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { Heart, ShoppingCart, User, Search, X } from "lucide-react";
+import { Heart, ShoppingCart, User, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-// Mock components for demonstration
 interface BadgeProps {
-  className?: string; // className is optional in some cases, hence the '?'
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -12,15 +11,10 @@ const Badge = ({ className, children }: BadgeProps) => (
   <span className={className}>{children}</span>
 );
 
-const Tooltip = ({ children }: { children: React.ReactNode }) => children;
+const Tooltip = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 const TooltipContent = ({ children }: { children: React.ReactNode }) => null;
-const TooltipTrigger = ({
-  children,
-  asChild,
-}: {
-  children: React.ReactNode;
-  asChild?: boolean;
-}) => children;
+const TooltipTrigger = ({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) =>
+  asChild ? <>{children}</> : <div>{children}</div>;
 
 const Searchbar = () => (
   <div className="relative w-full">
@@ -34,14 +28,14 @@ const Searchbar = () => (
 );
 
 const Header = () => {
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const { getTotalItems } = useCart();
+  const totalItems = getTotalItems();
 
   const iconClasses = "w-6 h-6 sm:w-7 sm:h-7 text-gray-800";
 
   return (
-    <header className="bg-white border-b border-gray-200 py-3 sm:py-4 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white border-b border-gray-200 py-4  sticky top-0 z-50 shadow-sm">
       <div className="w-[95%] mx-auto">
-        {/* Main header row */}
         <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -52,64 +46,47 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop Search - Hidden on mobile */}
+          {/* Desktop Search */}
           <div className="hidden md:flex flex-grow max-w-lg mx-4">
             <Searchbar />
           </div>
 
           {/* Action Icons */}
-          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+          <div className="flex items-center gap-4">
             {/* Login */}
             <Tooltip>
               <TooltipTrigger asChild>
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="p-1 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Login"
                 >
-                  <User className={iconClasses} />{" "}
-                  {/* Using consistent classes */}
-                </a>
+                  <User className={iconClasses} />
+                </Link>
               </TooltipTrigger>
               <TooltipContent>Login</TooltipContent>
             </Tooltip>
-
-            {/* Wishlist */}
-            <div className="relative">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Wishlist"
-                  >
-                    <Heart className={iconClasses} />{" "}
-                    {/* Using consistent classes */}
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>Wishlist</TooltipContent>
-              </Tooltip>
-              <Badge className="absolute -top-1 -right-1 bg-blue-500 text-white h-4 min-w-[1rem] sm:h-5 sm:min-w-[1.25rem] rounded-full px-1 flex items-center justify-center text-xs font-semibold">
-                8
-              </Badge>
-            </div>
 
             {/* Cart */}
             <div className="relative">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button
-                    className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Shopping cart"
-                  >
-                    <ShoppingCart className={iconClasses} />{" "}
-                    {/* Using consistent classes */}
-                  </button>
+                  <Link to="/cart" aria-label="Shopping cart" className="transition-colors inline-flex">
+                    <button
+                      className="p-1 cursor-pointer rounded-full transition-colors"
+                      aria-label="Shopping cart"
+                    >
+                      <ShoppingCart className={iconClasses} />
+                    </button>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent>Cart</TooltipContent>
               </Tooltip>
-              <Badge className="absolute -top-1 -right-1 bg-blue-500 text-white h-4 min-w-[1rem] sm:h-5 sm:min-w-[1.25rem] rounded-full px-1 flex items-center justify-center text-xs font-semibold">
-                8
-              </Badge>
+              {totalItems > 0 && (
+                <Badge className="absolute -top-1 -right-1 bg-black text-white w-5 h-5 rounded-full flex items-center justify-center text-[0.65rem] font-medium leading-none">
+                  {totalItems > 99 ? "99+" : totalItems}
+                </Badge>
+              )}
             </div>
           </div>
         </div>

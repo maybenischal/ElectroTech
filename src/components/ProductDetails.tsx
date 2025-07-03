@@ -3,10 +3,13 @@ import { useState } from "react";
 import products from "../data/products.json";
 import { slugify } from "../utils/slugify";
 import SimilarProducts from "./SimilarProducts";
+import { useCart } from "../context/CartContext";
+import { toast } from "sonner"; // If you're using sonner for toasts, or use any toast library
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   const product = products.find((item) => slugify(item.name) === slug);
 
@@ -28,6 +31,17 @@ const ProductDetail = () => {
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    try {
+      addToCart(product, quantity);
+      toast.success(`${quantity} ${product.name} added to cart!`);
+      // Optional: Reset quantity to 1 after adding to cart
+      setQuantity(1);
+    } catch (error) {
+      toast.error("Failed to add item to cart");
     }
   };
 
@@ -99,7 +113,10 @@ const ProductDetail = () => {
             </div>
 
             {/* Add to Cart Button */}
-            <button className="bg-black text-white px-6 py-2  hover:bg-orange-600 font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+            <button
+              onClick={handleAddToCart}
+              className="bg-black text-white px-6 py-2  hover:bg-orange-600 font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            >
               Add to Cart
             </button>
           </div>

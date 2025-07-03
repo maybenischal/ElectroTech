@@ -10,26 +10,33 @@ import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
 import Products from "./Pages/Products";
 import ProductDetail from "./components/ProductDetails";
+import { CartProvider } from "./context/CartContext";
+import Cart from "./components/Cart";
+import Contactus from "./Pages/Contactus";
 
 function App() {
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <CartProvider>
+        <ToastContainer position="top-right" autoClose={3000} />
 
-      <Header />
-      <Navbar />
+        <Header />
+        <Navbar />
 
-      {/* Page content changes based on the route */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<Aboutus />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:slug" element={<ProductDetail />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <Footer />
+        {/* Page content changes based on the route */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<Aboutus />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<Contactus />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
     </>
   );
 }
