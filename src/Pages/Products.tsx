@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products.json";
+import { slugify } from "../utils/slugify";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [type, setType] = useState<string[]>([]);
@@ -93,15 +95,17 @@ const Products = () => {
         <p className="text-2xl font-[600] mb-4">Products</p>
         <div className="flex flex-wrap gap-5">
           {filteredProducts.slice(0, 16).map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id.toString()}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              image={product.image}
-              rating={product.rating}
-            />
+            <Link key={product.id} to={`/products/${slugify(product.name)}`}>
+              <ProductCard
+                key={product.id}
+                id={product.id.toString()}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                image={product.image}
+                rating={product.rating}
+              />
+            </Link>
           ))}
         </div>
       </div>
