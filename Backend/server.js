@@ -3,6 +3,7 @@ import cors from "cors";
 import connectDB from "./config/mongodb.js";
 import "dotenv/config";
 import connectCloudinary from "./config/cloudinary.js";
+import userRouter from "./routes/userRoute.js";
 
 //App Config
 const app = express();
@@ -15,6 +16,8 @@ connectDB();
 connectCloudinary();
 
 //API Endpoints
+app.use("/api/user", userRouter);
+
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to ElectroTech Backend");
 });
