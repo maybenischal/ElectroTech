@@ -1,9 +1,38 @@
 import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
+// Function to create a JWT token
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET);
+};
 //Route for user login
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email });
+
+    //Check if user exists
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    //Check if password is correct
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      const token = createToken(user._id);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error("Error in user login:", error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 //Route for user registration
 const registerUser = async (req, res) => {
@@ -30,11 +59,24 @@ const registerUser = async (req, res) => {
     //Hashing the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
+    //Creating the user
+    const newUser = new userModel({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    const user = await newUser.save();
+
+    //Creating a Token
+    const token = createToken(user._id);
+    res.json({ success: true, token });
   } catch (error) {
     console.error("Error in user registration:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    res.json({ sucess: false, message: error.message });
   }
 };
+
 //Route for admin login
 const adminLogin = async (req, res) => {};
 export { loginUser, registerUser, adminLogin };
