@@ -2,7 +2,29 @@
 
 //Function to add a new product
 const addProduct = async (req, res) => {
-  // You'll eventually fill this with logic
+  try {
+    const { name, price, description } = req.body;
+    const image = req.files.image[0].path; // Assuming you're using multer for file uploads
+
+    // Here you would typically save the product to your database
+    // For example:
+    // const newProduct = await Product.create({ name, price, description, image });
+
+    res.status(201).json({
+      message: "Product added successfully",
+      product: {
+        name,
+        price,
+        description,
+        image,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error adding product",
+      error: error.message,
+    });
+  }
 };
 
 //Function for listing all products
