@@ -1,24 +1,34 @@
-// Backend/controllers/productController.js
+import { v2 as cloudinary } from "cloudinary";
+import productModel from "../models/productModel.js";
 
 //Function to add a new product
 const addProduct = async (req, res) => {
   try {
-    const { name, price, description } = req.body;
-    const image = req.files.image[0].path; // Assuming you're using multer for file uploads
+    const { name, type, brand, price, description, specifications } = req.body;
 
-    // Here you would typically save the product to your database
-    // For example:
-    // const newProduct = await Product.create({ name, price, description, image });
+    const image = req.files.image[0].path;
 
-    res.status(201).json({
-      message: "Product added successfully",
-      product: {
-        name,
-        price,
-        description,
-        image,
-      },
+    const cloudinaryResponse = await cloudinary.uploader.upload(image, {
+      folder: "electro_tech_products",
     });
+    const imageUrl = cloudinaryResponse.secure_url;
+
+    const specificationsParsed = JSON.parse(specifications);
+    const productData = {
+      name,
+      type,
+      brand,
+      price: Number(price),
+      description,
+      specifications: specificationsParsed,
+      image: imageUrl, // Use the URL from Cloudinary
+      date: Date.now(),
+    };
+    console.log(productData);
+
+    // Create a new product instance and save it to the database
+    const product = new productModel(productData);
+    await product.save();
   } catch (error) {
     res.status(500).json({
       message: "Error adding product",
@@ -29,17 +39,41 @@ const addProduct = async (req, res) => {
 
 //Function for listing all products
 const listProducts = async (req, res) => {
-  // You'll eventually fill this with logic
+  try {
+    const products = await productModel.find({});
+    res.json({
+      message: "Products fetched successfully",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
 
 //Function to remove product
 const removeProduct = async (req, res) => {
-  // You'll eventually fill this with logic
+  try {
+    await productModel.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Product removed successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
 
 //Function to single product details
 const productDetails = async (req, res) => {
-  // You'll eventually fill this with logic
+  try {
+    const { productID } = req.body;
+    const product = await productModel.findById(productID);
+    res.json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    console.log(error), res.json({ success: false, message: error.message });
+  }
 };
 
 export { addProduct, listProducts, removeProduct, productDetails };

@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
+import mongoose, { mongo } from "mongoose";
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
+    // id: {
+    //   type: Number,
+    //   required: true,
+    //   unique: true,
+    // },
     name: {
       type: String,
       required: true,
@@ -28,10 +28,6 @@ const productSchema = new Schema(
       type: String, // Assuming the image is stored as a file path or URL
       required: true,
     },
-    rating: {
-      type: Number, // Optional, used for rating systems like 1-5 stars
-      default: 0,
-    },
     description: {
       type: String,
       required: true,
@@ -44,5 +40,6 @@ const productSchema = new Schema(
   },
   { timestamps: true }
 );
-
-module.exports = mongoose.model("Product", productSchema);
+const productModel =
+  mongoose.models.Product || mongoose.model("Product", productSchema);
+export default productModel;
