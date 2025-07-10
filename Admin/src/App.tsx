@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
+
 const App = () => {
   {/* Token State Created and gets value from localstore.. no value empty string return*/ }
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : "")
