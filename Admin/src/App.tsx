@@ -6,6 +6,7 @@ import ListProducts from "./pages/ListProducts"
 import { Route, Routes } from "react-router-dom"
 import Login from "./Components/Login"
 import { ToastContainer } from 'react-toastify';
+import UserProfile from "./pages/UserProfile"
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/" element={<h1>Admin Dashboard</h1>} />
           <Route path="/addproducts" element={<AddProducts token={token} />} />
           <Route path="/listproducts" element={<ListProducts token={token} />} />
+          <Route path="/profile" element={<UserProfile />} />
           {/* Add more admin routes as needed */}
         </Routes>
 
