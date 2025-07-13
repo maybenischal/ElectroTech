@@ -52,8 +52,6 @@ const Navbar = ({ setToken }: NavbarProps) => {
                             <DropdownMenuItem onClick={handleLogout} className="text-red-700 cursor-pointer">
                                 Logout
                             </DropdownMenuItem>
-                            <DropdownMenuItem>Team</DropdownMenuItem>
-                            <DropdownMenuItem>Subscription</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

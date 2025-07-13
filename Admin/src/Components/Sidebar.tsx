@@ -2,8 +2,6 @@ import {
     Home,
     ShoppingCart,
     Package,
-    Users,
-    Percent,
     Settings,
     List,
     Plus

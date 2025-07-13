@@ -3,6 +3,7 @@ import { Button } from './ui/button'
 import { useState } from 'react';
 import { backendUrl } from '../App';
 import { toast } from 'react-toastify';
+
 interface LoginProps {
     setToken: (token: string) => void; // setToken is a function that takes a string and returns void
 }

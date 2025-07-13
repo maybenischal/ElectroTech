@@ -29,6 +29,11 @@ const addProduct = async (req, res) => {
     // Create a new product instance and save it to the database
     const product = new productModel(productData);
     await product.save();
+    res.json({
+      success: true,
+      message: "Product added successfully!",
+      product: productData,
+    });
   } catch (error) {
     res.status(500).json({
       message: "Error adding product",

@@ -13,7 +13,7 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const App = () => {
   {/* Token State Created and gets value from localstore.. no value empty string return*/ }
-  const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : "")
+  const [token, setToken] = useState(localStorage.getItem('token') || "")
 
   {/*saves token in the localstorage so that usestate can fetch the token from the localstorage when refreshed */ }
   useEffect(() => {
@@ -22,22 +22,22 @@ const App = () => {
 
   return (
     <div>
-      <ToastContainer />
-      {token === "" ? <Login setToken={setToken} /> : <>
-        <Navbar setToken={setToken} />
+    <ToastContainer />
+    {token === "" ? <Login setToken={setToken} /> : <>
+      <Navbar setToken={setToken} />
+      <div className="flex">
         <Sidebar />
-        <Routes>
-          <Route path="/" element={<h1>Admin Dashboard</h1>} />
-          <Route path="/addproducts" element={<AddProducts token={token} />} />
-          <Route path="/listproducts" element={<ListProducts token={token} />} />
-          <Route path="/profile" element={<UserProfile />} />
-          {/* Add more admin routes as needed */}
-        </Routes>
-
-      </>}
-
-
-    </div>
+        <main className="flex-1 p-6">
+          <Routes>
+            <Route path="/" element={<h1>Admin Dashboard</h1>} />
+            <Route path="/products/add" element={<AddProducts token={token} />} />
+            <Route path="/products/list" element={<ListProducts token={token} />} />
+            <Route path="/profile" element={<UserProfile />} />
+          </Routes>
+        </main>
+      </div>
+    </>}
+  </div>
   )
 }
 
