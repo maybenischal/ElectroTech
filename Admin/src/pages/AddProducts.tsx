@@ -17,7 +17,6 @@ interface AddProductsProps {
 }
 
 const AddProducts = ({ token }: AddProductsProps) => {
-  console.log(token);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");

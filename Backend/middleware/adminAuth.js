@@ -10,9 +10,7 @@ const adminAuth = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded token:", decoded); // For debugging
 
-    // FIX: Since your JWT payload is a simple string, compare it directly
     const expectedPayload =
       process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD;
 
