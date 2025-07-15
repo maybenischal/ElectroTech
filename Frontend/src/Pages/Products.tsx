@@ -3,11 +3,15 @@ import ProductCard from "../components/ProductCard";
 import products from "../data/products.json";
 import { slugify } from "../utils/slugify";
 import { Link } from "react-router-dom";
+import { getProductsData } from "../lib/api";
+import type { Product } from "../lib/types";
 
 const Products = () => {
   const [type, setType] = useState<string[]>([]);
+  const [products, setProducts] = useState([]);
+
   const [brand, setBrand] = useState<string[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products as Product[]);
 
   const toggleType = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -28,7 +32,7 @@ const Products = () => {
   };
 
   const applyFilters = () => {
-    let productsCopy = [...products];
+    let productsCopy: Product[] = [...products];
 
     if (type.length > 0) {
       productsCopy = productsCopy.filter((product) =>
@@ -48,6 +52,11 @@ const Products = () => {
   useEffect(() => {
     applyFilters();
   }, [type, brand]);
+
+  useEffect(() => {
+     getProductsData()
+    console.log("J")
+  }, [])
 
   return (
     <div className="w-[95%] mx-auto flex justify-between">

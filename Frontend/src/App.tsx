@@ -14,6 +14,9 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 import Contactus from "./Pages/Contactus";
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL
+
+
 function App() {
   return (
     <>

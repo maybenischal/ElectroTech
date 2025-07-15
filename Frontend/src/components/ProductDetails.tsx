@@ -4,7 +4,7 @@ import products from "../data/products.json";
 import { slugify } from "../utils/slugify";
 import SimilarProducts from "./SimilarProducts";
 import { useCart } from "../context/CartContext";
-import { toast } from "sonner"; // If you're using sonner for toasts, or use any toast library
+import { toast } from "sonner";
 
 const ProductDetail = () => {
   const { slug } = useParams();
