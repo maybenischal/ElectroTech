@@ -1,17 +1,21 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-import products from "../data/products.json";
-import { slugify } from "../utils/slugify";
-import SimilarProducts from "./SimilarProducts";
+import { useState, useEffect } from "react";
+import { getProductBySlug } from "../lib/api";
 import { useCart } from "../context/CartContext";
 import { toast } from "sonner";
 
 const ProductDetail = () => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
+  const [product, setProduct] = useState<any>(null);
+
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
-  const product = products.find((item) => slugify(item.name) === slug);
+  useEffect(() => {
+    getProductBySlug(slug!)
+      .then(setProduct).
+      catch(() => setProduct(null));
+  }, [slug]);
 
   if (!product) {
     return <div className="text-center mt-10 text-xl">Product not found.</div>;
@@ -132,7 +136,7 @@ const ProductDetail = () => {
                     className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0"
                   >
                     <span className="font-medium text-sm text-gray-700">{key}:</span>
-                    <span className="text-gray-600 text-sm text-right max-w-[60%]">{value}</span>
+                    <span className="text-gray-600 text-sm text-right max-w-[60%]">{String(value)}</span>
                   </div>
                 ))}
               </div>
@@ -141,7 +145,7 @@ const ProductDetail = () => {
         </div>
       </div>
       <hr className="mt-8 border-t-2" />
-      <SimilarProducts />
+
     </div>
   );
 };
