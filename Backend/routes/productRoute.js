@@ -22,3 +22,4 @@ productRouter.post("/remove", adminAuth, removeProduct);
 productRouter.get("/details/:id", productDetails);
 
 export default productRouter;
+  

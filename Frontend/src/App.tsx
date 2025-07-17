@@ -15,6 +15,8 @@ import Cart from "./components/Cart";
 import Contactus from "./Pages/Contactus";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
+console.log("VITE_BACKEND_URL =", backendUrl);
+
 
 
 function App() {

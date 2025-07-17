@@ -1,16 +1,14 @@
-    import axios from "axios"
-    import { backendUrl } from "../App"
+import axios from "axios";
+import { slugify } from "../utils/slugify";
+import { backendUrl } from "../App";
 
-    export const getProductsData = async() =>{
-        try{
-            const response = await axios.get(backendUrl + '/api/product/list');     
-            console.log(response)
-            console.log("hi")
-                console.log("List state set:", response.data.products);
+export const getProductsData = async () => {
+  const response = await axios.get(backendUrl + "/api/product/list");
 
+  return response.data.products;
+};
 
-        }
-        catch(error){
-            console.log(error)
-        }
-    }
+export const getProductBySlug = async (slug: string) => {
+  const all = await getProductsData();
+  return all.find((item: any) => slugify(item.name) === slug);
+};

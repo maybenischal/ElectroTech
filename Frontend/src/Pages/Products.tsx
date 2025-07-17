@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import products from "../data/products.json";
 import { slugify } from "../utils/slugify";
 import { Link } from "react-router-dom";
 import { getProductsData } from "../lib/api";
@@ -8,7 +7,7 @@ import type { Product } from "../lib/types";
 
 const Products = () => {
   const [type, setType] = useState<string[]>([]);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   const [brand, setBrand] = useState<string[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products as Product[]);
@@ -36,13 +35,13 @@ const Products = () => {
 
     if (type.length > 0) {
       productsCopy = productsCopy.filter((product) =>
-        type.includes(product.type)
+        type.map(t => t.toLowerCase()).includes(product.type.toLowerCase())
       );
     }
 
     if (brand.length > 0) {
       productsCopy = productsCopy.filter((product) =>
-        brand.includes(product.brand)
+        brand.map(b => b.toLowerCase()).includes(product.brand.toLowerCase())
       );
     }
 
@@ -51,12 +50,29 @@ const Products = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [type, brand]);
+
+  }, [type, brand, products]);
 
   useEffect(() => {
-     getProductsData()
-    console.log("J")
-  }, [])
+    getProductsData()
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const transformed = data.map((product) => ({
+            ...product,
+            id: product._id,
+          }));
+
+          setProducts(transformed);
+          setFilteredProducts(transformed);
+        } else {
+          console.error("Fetched data is not an array:", data);
+          setProducts([]);
+          setFilteredProducts([]);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch products", err));
+  }, []);
+
 
   return (
     <div className="w-[95%] mx-auto flex justify-between">
@@ -103,10 +119,10 @@ const Products = () => {
       <div className="w-3/4 p-4 items-start">
         <p className="text-2xl font-[600] mb-4">Products</p>
         <div className="flex flex-wrap gap-5">
-          {filteredProducts.slice(0, 16).map((product) => (
+          {/* {filteredProducts.slice(0, 16).map((product) => (
             <Link key={product.id} to={`/products/${slugify(product.name)}`}>
               <ProductCard
-                key={product.id}
+                key={(product.id ?? '').toString()}
                 id={product.id.toString()}
                 name={product.name}
                 description={product.description}
@@ -114,7 +130,23 @@ const Products = () => {
                 image={product.image}
               />
             </Link>
-          ))}
+          ))} */}
+
+          {filteredProducts
+            .filter(product => product.id !== undefined && product.id !== null)
+            .slice(0, 16)
+            .map(product => (
+              <Link key={product.id} to={`/products/${slugify(product.name)}`}>
+                <ProductCard
+                  key={product.id.toString()}
+                  id={product.id.toString()}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  image={product.image}
+                />
+              </Link>
+            ))}
         </div>
       </div>
     </div>
