@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import Aboutus from "./Pages/Aboutus";
-import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
 import Products from "./Pages/Products";
 import ProductDetail from "./components/ProductDetails";
@@ -36,7 +35,6 @@ function App() {
           <Route path="/about" element={<Aboutus />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetail />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contactus />} />
         </Routes>
