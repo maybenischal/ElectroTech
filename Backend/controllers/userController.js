@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
+
 //Route for user login
 const loginUser = async (req, res) => {
   try {
@@ -16,7 +17,7 @@ const loginUser = async (req, res) => {
 
     //Check if user exists
     if (!user) {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(400).json({ success: false, message: "User not found" });
     }
 
     //Check if password is correct
@@ -24,7 +25,7 @@ const loginUser = async (req, res) => {
 
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ success: true, token });
+      res.json({ success: true, token, user: { id: user._id, name: user.name, email: user.email } });
     } else {
       res.json({ success: false, message: "Invalid credentials" });
     }
@@ -42,18 +43,18 @@ const registerUser = async (req, res) => {
     //Check if user already exists
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ success: false, message: "User already exists" });
     }
 
     //Validating email format and password strength
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ message: "Invalid email format" });
+      return res.status(400).json({ success: false, message: "Invalid email format" });
     }
 
     if (password.length < 6) {
       return res
         .status(400)
-        .json({ message: "Password must be at least 6 characters long" });
+        .json({ success: false, message: "Password must be at least 6 characters long" });
     }
 
     //Hashing the password
@@ -70,10 +71,29 @@ const registerUser = async (req, res) => {
 
     //Creating a Token
     const token = createToken(user._id);
-    res.json({ success: true, token });
+    res.json({ success: true, token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     console.error("Error in user registration:", error);
-    res.json({ sucess: false, message: error.message });
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// Route to get user profile
+const getUserProfile = async (req, res) => {
+  try {
+    const user = req.user; 
+    res.json({
+      success: true,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        cartData: user.cartData
+      }
+    });
+  } catch (error) {
+    console.error("Error getting user profile:", error);
+    res.json({ success: false, message: error.message });
   }
 };
 
@@ -92,6 +112,8 @@ const adminLogin = async (req, res) => {
     }
   } catch (error) {
     console.error("Error in admin login:", error);
+    res.json({ success: false, message: "Internal server error" });
   }
 };
-export { loginUser, registerUser, adminLogin };
+
+export { loginUser, registerUser, adminLogin, getUserProfile };

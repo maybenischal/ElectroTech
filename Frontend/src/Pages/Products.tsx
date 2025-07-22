@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import ProductCard from "../components/ProductCard";
-import products from "../data/products.json";
 import { slugify } from "../utils/slugify";
 import { Link } from "react-router-dom";
 import { getProductsData } from "../lib/api";
@@ -8,10 +7,9 @@ import type { Product } from "../lib/types";
 
 const Products = () => {
   const [type, setType] = useState<string[]>([]);
-  const [products, setProducts] = useState([]);
-
+  const [products, setProducts] = useState<Product[]>([]);
   const [brand, setBrand] = useState<string[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products as Product[]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const toggleType = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -31,32 +29,50 @@ const Products = () => {
     );
   };
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let productsCopy: Product[] = [...products];
 
     if (type.length > 0) {
       productsCopy = productsCopy.filter((product) =>
-        type.includes(product.type)
+        type.map(t => t.toLowerCase()).includes(product.type.toLowerCase())
       );
     }
 
     if (brand.length > 0) {
       productsCopy = productsCopy.filter((product) =>
-        brand.includes(product.brand)
+        brand.map(b => b.toLowerCase()).includes(product.brand.toLowerCase())
       );
     }
 
     setFilteredProducts(productsCopy);
-  };
+  }, [products, type, brand]);
 
   useEffect(() => {
     applyFilters();
-  }, [type, brand]);
+  }, [applyFilters]);
 
   useEffect(() => {
-     getProductsData()
-    console.log("J")
-  }, [])
+    getProductsData()
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const transformed = data.map((product) => ({
+            ...product,
+            id: product._id,
+          }));
+          setProducts(transformed);
+          setFilteredProducts(transformed);
+        } else {
+          console.error("Fetched data is not an array:", data);
+          setProducts([]);
+          setFilteredProducts([]);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch products", err);
+        setProducts([]);
+        setFilteredProducts([]);
+      });
+  }, []);
 
   return (
     <div className="w-[95%] mx-auto flex justify-between">
@@ -102,6 +118,7 @@ const Products = () => {
       {/* Product List */}
       <div className="w-3/4 p-4 items-start">
         <p className="text-2xl font-[600] mb-4">Products</p>
+        
         <div className="flex flex-wrap gap-5">
           {filteredProducts.slice(0, 16).map((product) => (
             <Link key={product.id} to={`/products/${slugify(product.name)}`}>

@@ -1,17 +1,44 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-import products from "../data/products.json";
-import { slugify } from "../utils/slugify";
-import SimilarProducts from "./SimilarProducts";
+import { useState, useEffect } from "react";
+import { getProductBySlug } from "../lib/api";
 import { useCart } from "../context/CartContext";
 import { toast } from "sonner";
 
+interface Product {
+  _id: string;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  brand: string;
+  type: string;
+  image: string;
+  specifications?: Record<string, string>;
+}
+
 const ProductDetail = () => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
 
-  const product = products.find((item) => slugify(item.name) === slug);
+  useEffect(() => {
+    if (slug) {
+      setLoading(true);
+      getProductBySlug(slug)
+        .then(setProduct)
+        .catch((error) => {
+          console.error("Failed to load product:", error);
+          setProduct(null);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [slug]);
+
+  if (loading) {
+    return <div className="text-center mt-10 text-xl">Loading product...</div>;
+  }
 
   if (!product) {
     return <div className="text-center mt-10 text-xl">Product not found.</div>;
@@ -40,7 +67,7 @@ const ProductDetail = () => {
       toast.success(`${quantity} ${product.name} added to cart!`);
       // Optional: Reset quantity to 1 after adding to cart
       setQuantity(1);
-    } catch (error) {
+    } catch {
       toast.error("Failed to add item to cart");
     }
   };
@@ -141,7 +168,6 @@ const ProductDetail = () => {
         </div>
       </div>
       <hr className="mt-8 border-t-2" />
-      <SimilarProducts />
     </div>
   );
 };
