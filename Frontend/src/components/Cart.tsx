@@ -1,40 +1,66 @@
+// src/Components/Cart.jsx
+// Replace your existing Cart component with this updated version
+
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus } from 'lucide-react';
 
 const Cart = () => {
-    const { items, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
-    const handleEpayPayment = () => {
-        const total = getTotalPrice().toFixed(2);
-        const orderId = 'ORDER_' + Date.now();
+    const { items, removeFromCart, updateQuantity, getTotalPrice} = useCart();
+    
+    const handleBuy = async () => {
+        try {
+            const total = getTotalPrice();
+            
+            if (total <= 0) {
+                alert("Cart is empty or invalid total amount");
+                return;
+            }
 
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://uat.esewa.com.np/epay/main';
+            // Call backend to initialize payment
+            const response = await fetch("http://localhost:4000/api/payment/initialize-esewa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    total_amount: total,
+                    // Optionally send cart items for backend validation
+                    cart_items: items 
+                }),
+            });
 
-        const inputs = [
-            { name: 'tAmt', value: total },
-            { name: 'amt', value: total },
-            { name: 'psc', value: 0 },
-            { name: 'pdc', value: 0 },
-            { name: 'scd', value: 'EPAYTEST' },
-            { name: 'pid', value: orderId },
-            { name: 'su', value: 'http://localhost:4000/api/payment/success' },
-            { name: 'fu', value: 'http://localhost:4000/api/payment/failure' },
-        ];
+            const data = await response.json();
 
-        inputs.forEach(i => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = i.name;
-            input.value = i.value;
-            form.appendChild(input);
-        });
+            if (data.success) {
+                // Create and submit form to eSewa
+                const form = document.createElement("form");
+                form.method = data.payment.method;
+                form.action = data.payment.action;
+                form.target = "_self"; // Navigate in same window
 
-        document.body.appendChild(form);
-        form.submit();
+                // Add all form fields
+                Object.entries(data.payment.fields).forEach(([key, value]) => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+
+                document.body.appendChild(form);
+                form.submit(); // This will redirect to eSewa
+                
+                // Clean up
+                document.body.removeChild(form);
+            } else {
+                alert("Payment initialization failed: " + data.message);
+            }
+        } catch (error) {
+            console.error("Payment error:", error);
+            alert("Payment initialization failed. Please check your connection and try again.");
+        }
     };
-
 
     if (items.length === 0) {
         return (
@@ -57,7 +83,6 @@ const Cart = () => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-4">
                 <h1 className="text-3xl font-bold">Shopping Cart</h1>
-
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -79,7 +104,7 @@ const Cart = () => {
                                     >
                                         {item.name}
                                     </Link>
-                                    <p className="text-gray-600">${item.price.toFixed(2)} each</p>
+                                    <p className="text-gray-600">NPR {item.price.toFixed(2)} each</p>
                                 </div>
 
                                 <div className="flex items-center gap-2">
@@ -100,7 +125,7 @@ const Cart = () => {
                                 </div>
 
                                 <div className="text-right">
-                                    <p className="font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="font-semibold">NPR {(item.price * item.quantity).toFixed(2)}</p>
                                 </div>
 
                                 <button
@@ -114,7 +139,7 @@ const Cart = () => {
                     </div>
                     <Link
                         to="/products"
-                        className="block  text-gray-600 hover:text-gray-800 border w-50 mt-2 p-2 rounded-md text-center font-[600] transition-colors"
+                        className="block text-gray-600 hover:text-gray-800 border w-50 mt-2 p-2 rounded-md text-center font-[600] transition-colors"
                     >
                         Continue Shopping
                     </Link>
@@ -128,7 +153,7 @@ const Cart = () => {
                         <div className="space-y-2 mb-4">
                             <div className="flex justify-between">
                                 <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                                <span>{getTotalPrice().toFixed(2)}</span>
+                                <span>NPR {getTotalPrice().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Shipping</span>
@@ -137,16 +162,17 @@ const Cart = () => {
                             <hr className="my-2" />
                             <div className="flex justify-between text-lg font-bold">
                                 <span>Total</span>
-                                <span>Npr {getTotalPrice().toFixed(2)}</span>
+                                <span>NPR {getTotalPrice().toFixed(2)}</span>
                             </div>
-
                         </div>
 
-                        <button onClick={handleEpayPayment} className="w-full bg-[#bd2b26] text-white py-3 rounded-lg hover:bg-[#ff6262] transition-colors mb-3">
-                            Pay with Esewa
+                        <button 
+                            onClick={handleBuy} 
+                            className="w-full bg-[#60bb46] text-white py-3 rounded-lg hover:bg-[#4a9635] transition-colors mb-3 disabled:bg-gray-400"
+                            disabled={items.length === 0}
+                        >
+                            Pay with eSewa
                         </button>
-
-
                     </div>
                 </div>
             </div>

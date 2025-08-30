@@ -1,8 +1,23 @@
-// routes/paymentRoute.js
+
 import express from "express";
+import { 
+    initializeEsewaPayment, 
+    handlePaymentSuccess, 
+    handlePaymentFailure 
+} from "../controllers/esewaController.js";
+
 const router = express.Router();
 
-router.get("/success", (req, res) => res.send("Payment Success! Save order info here."));
-router.get("/failure", (req, res) => res.send("Payment Failed!"));
+// Route to initialize eSewa payment
+
+router.post("/initialize-esewa", initializeEsewaPayment);
+
+// Route to handle successful payment callback from eSewa
+
+router.get("/success", handlePaymentSuccess);
+
+// Route to handle failed payment callback from eSewa
+
+router.get("/failure", handlePaymentFailure);
 
 export default router;

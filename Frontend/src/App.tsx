@@ -1,6 +1,5 @@
 import Home from "./Pages/Home";
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
@@ -19,7 +18,6 @@ import Profile from "./Pages/Profile";
 import SearchResults from "./Pages/SearchResults";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-
 function App() {
   return (
     <>
@@ -29,7 +27,6 @@ function App() {
             <ToastContainer position="top-right" autoClose={3000} />
 
             <Header />
-            <Navbar />
 
             {/* Page content changes based on the route */}
             <Routes>
@@ -43,15 +40,17 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/contact" element={<Contactus />} />
-              <Route 
-                path="/profile" 
+              <Route
+                path="/profile"
                 element={
                   <ProtectedRoute>
                     <Profile />
                   </ProtectedRoute>
-                } 
+                }
               />
+            
             </Routes>
+            
             <Footer />
           </CartProvider>
         </SearchProvider>
