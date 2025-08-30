@@ -79,7 +79,7 @@ const ListProducts = ({ token }: ListProductsProps) => {
               <p>{item.type}</p>
               <p>{item.brand}</p>
               <img src={item.image} className="h-10 w-20 object-cover" />
-              <p>${item.price}</p>
+              <p>{item.price}</p>
               <button
                 onClick={() => removeProduct(item._id)}
                 className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm flex items-center gap-1"

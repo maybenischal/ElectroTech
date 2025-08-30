@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "../Components/ui/avatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -7,7 +7,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "../Components/ui/dropdown-menu"
 
 interface NavbarProps {
     setToken: (token: string) => void;

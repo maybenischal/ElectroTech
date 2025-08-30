@@ -4,6 +4,37 @@ import { Trash2, Plus, Minus } from 'lucide-react';
 
 const Cart = () => {
     const { items, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
+    const handleEpayPayment = () => {
+        const total = getTotalPrice().toFixed(2);
+        const orderId = 'ORDER_' + Date.now();
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://uat.esewa.com.np/epay/main';
+
+        const inputs = [
+            { name: 'tAmt', value: total },
+            { name: 'amt', value: total },
+            { name: 'psc', value: 0 },
+            { name: 'pdc', value: 0 },
+            { name: 'scd', value: 'EPAYTEST' },
+            { name: 'pid', value: orderId },
+            { name: 'su', value: 'http://localhost:4000/api/payment/success' },
+            { name: 'fu', value: 'http://localhost:4000/api/payment/failure' },
+        ];
+
+        inputs.forEach(i => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = i.name;
+            input.value = i.value;
+            form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+    };
+
 
     if (items.length === 0) {
         return (
@@ -97,7 +128,7 @@ const Cart = () => {
                         <div className="space-y-2 mb-4">
                             <div className="flex justify-between">
                                 <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} items)</span>
-                                <span>${getTotalPrice().toFixed(2)}</span>
+                                <span>{getTotalPrice().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Shipping</span>
@@ -106,13 +137,13 @@ const Cart = () => {
                             <hr className="my-2" />
                             <div className="flex justify-between text-lg font-bold">
                                 <span>Total</span>
-                                <span>${getTotalPrice().toFixed(2)}</span>
+                                <span>Npr {getTotalPrice().toFixed(2)}</span>
                             </div>
 
                         </div>
 
-                        <button className="w-full bg-[#bd2b26] text-white py-3 rounded-lg hover:bg-[#ff6262] transition-colors mb-3">
-                            Proceed to Checkout
+                        <button onClick={handleEpayPayment} className="w-full bg-[#bd2b26] text-white py-3 rounded-lg hover:bg-[#ff6262] transition-colors mb-3">
+                            Pay with Esewa
                         </button>
 
 

@@ -1,6 +1,6 @@
 import {
   Upload, Package, FileText, Tag,
-  DollarSign, Monitor, Camera
+  Monitor, Camera
 } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios'
@@ -131,8 +131,8 @@ const AddProducts = ({ token }: AddProductsProps) => {
 
               <div className="space-y-2">
                 <label className="text-lg font-semibold text-gray-700 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5" />
-                  Price
+
+                  Price in Rs
                 </label>
                 <input
                   type="number"
@@ -239,6 +239,7 @@ const AddProducts = ({ token }: AddProductsProps) => {
                 >
                   <option value="">Select Brand</option>
                   <option value="Apple">Apple</option>
+                  <option value="Boat">Boat</option>
                   <option value="Samsung">Samsung</option>
                   <option value="Lenovo">Lenovo</option>
                   <option value="DELL">DELL</option>

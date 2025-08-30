@@ -22,22 +22,25 @@ const App = () => {
 
   return (
     <div>
-    <ToastContainer />
-    {token === "" ? <Login setToken={setToken} /> : <>
-      <Navbar setToken={setToken} />
-      <div className="flex">
-        <Sidebar />
-        <main className="flex-1 p-6">
-          <Routes>
-            <Route path="/" element={<h1>Admin Dashboard</h1>} />
-            <Route path="/products/add" element={<AddProducts token={token} />} />
-            <Route path="/products/list" element={<ListProducts token={token} />} />
-            <Route path="/profile" element={<UserProfile />} />
-          </Routes>
-        </main>
-      </div>
-    </>}
-  </div>
+      <ToastContainer />
+      {token === "" ? <Login setToken={setToken} /> : <>
+        <Navbar setToken={setToken} />
+        <div className="flex">
+          <Sidebar />
+          <main className="flex-1 p-6">
+            <Routes>
+              {/* <Route path="/" element={<h1>Admin Dashboard</h1>} /> */}
+              <Route path="/" element={<AddProducts token={token}/>} />
+
+
+              <Route path="/products/add" element={<AddProducts token={token} />} />
+              <Route path="/products/list" element={<ListProducts token={token} />} />
+              <Route path="/profile" element={<UserProfile />} />
+            </Routes>
+          </main>
+        </div>
+      </>}
+    </div>
   )
 }
 

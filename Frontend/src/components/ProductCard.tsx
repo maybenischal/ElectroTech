@@ -47,7 +47,7 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center justify-between gap-8 w-full">
-          <p className="text-base font-bold mt-1">${price.toFixed(2)}</p>
+          <p className="text-base font-bold mt-1">{price.toFixed(2)}</p>
           <Button variant="outline" size="sm" className="px-2 cursor-pointer">
             Buy Now
           </Button>
