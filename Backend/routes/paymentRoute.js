@@ -3,7 +3,8 @@ import express from "express";
 import { 
     initializeEsewaPayment, 
     handlePaymentSuccess, 
-    handlePaymentFailure 
+    handlePaymentFailure,
+    verifyTransaction
 } from "../controllers/esewaController.js";
 
 const router = express.Router();
@@ -19,5 +20,8 @@ router.get("/success", handlePaymentSuccess);
 // Route to handle failed payment callback from eSewa
 
 router.get("/failure", handlePaymentFailure);
+
+// Route to verify transaction for frontend validation
+router.post("/verify-transaction", verifyTransaction);
 
 export default router;

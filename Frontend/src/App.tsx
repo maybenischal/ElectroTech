@@ -17,6 +17,7 @@ import Contactus from "./Pages/Contactus";
 import Profile from "./Pages/Profile";
 import SearchResults from "./Pages/SearchResults";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { PaymentSuccess, PaymentFailure } from "./components/PaymentStatus";
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/contact" element={<Contactus />} />
+              <Route path="/payment/success" element={<PaymentSuccess />} />
+              <Route path="/payment/failed" element={<PaymentFailure />} />
               <Route
                 path="/profile"
                 element={

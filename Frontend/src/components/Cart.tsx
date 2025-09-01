@@ -33,6 +33,11 @@ const Cart = () => {
             const data = await response.json();
 
             if (data.success) {
+                // Mark that payment is being initiated (for validation later)
+                sessionStorage.setItem('payment_initiated', 'true');
+                sessionStorage.setItem('payment_amount', total.toString());
+                sessionStorage.setItem('payment_timestamp', Date.now().toString());
+                
                 // Create and submit form to eSewa
                 const form = document.createElement("form");
                 form.method = data.payment.method;
@@ -44,7 +49,7 @@ const Cart = () => {
                     const input = document.createElement("input");
                     input.type = "hidden";
                     input.name = key;
-                    input.value = value;
+                    input.value = String(value); // Convert to string to fix TypeScript error
                     form.appendChild(input);
                 });
 

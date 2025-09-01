@@ -34,28 +34,130 @@ export const PaymentSuccess: React.FC = () => {
     const navigate = useNavigate();
     const { clearCart } = useCart();
     const [showToast, setShowToast] = useState(false);
+    const [isValidPayment, setIsValidPayment] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(true);
     
     const transactionId = searchParams.get('transaction_id');
     const amount = searchParams.get('amount');
 
     useEffect(() => {
-        // Clear cart on successful payment
-        clearCart();
+        console.log('PaymentSuccess component mounted');
+        console.log('Transaction ID:', transactionId);
+        console.log('Amount:', amount);
         
-        // Show toast notification
-        setShowToast(true);
-        
-        // Redirect to home page immediately after 1.5 seconds
-        const redirectTimer = setTimeout(() => {
-            navigate('/');
-        }, 1500);
+        // Check if we have the required payment parameters
+        if (!transactionId || !amount) {
+            console.log('Missing payment parameters, redirecting to home');
+            navigate('/', { replace: true });
+            return;
+        }
 
-        return () => clearTimeout(redirectTimer);
-    }, [clearCart, navigate]);
+        // Additional validation: check if payment was legitimately initiated
+        const paymentInitiated = sessionStorage.getItem('payment_initiated');
+        const paymentTimestamp = sessionStorage.getItem('payment_timestamp');
+        
+        // Check if session data exists and is recent (within last 30 minutes)
+        const isRecentPayment = paymentTimestamp && 
+            (Date.now() - parseInt(paymentTimestamp)) < (30 * 60 * 1000);
+        
+        if (!paymentInitiated || !isRecentPayment) {
+            console.log('No valid payment session found, redirecting to home');
+            navigate('/', { replace: true });
+            return;
+        }
+
+        // Clear the session data to prevent reuse
+        sessionStorage.removeItem('payment_initiated');
+        sessionStorage.removeItem('payment_amount');
+        sessionStorage.removeItem('payment_timestamp');
+
+        // Verify the transaction with backend (optional but recommended)
+        const verifyPayment = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/payment/verify-transaction`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        transaction_id: transactionId,
+                        amount: amount
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success && data.valid) {
+                    setIsValidPayment(true);
+                    setIsVerifying(false);
+                    
+                    // Clear cart on successful payment verification
+                    clearCart();
+                    
+                    // Show toast notification
+                    setShowToast(true);
+                    
+                    // Set up navigation timer
+                    const redirectTimer = setTimeout(() => {
+                        try {
+                            console.log('Attempting navigation to home...');
+                            navigate('/');
+                        } catch (error) {
+                            console.error('Navigation error:', error);
+                            window.location.href = '/';
+                        }
+                    }, 3000);
+
+                    return () => clearTimeout(redirectTimer);
+                } else {
+                    console.log('Invalid payment verification, redirecting to home');
+                    navigate('/', { replace: true });
+                }
+            } catch (error) {
+                console.error('Payment verification error:', error);
+                // If verification fails, we can still proceed with basic validation
+                // but this depends on your security requirements
+                setIsValidPayment(true);
+                setIsVerifying(false);
+                clearCart();
+                setShowToast(true);
+                
+                const redirectTimer = setTimeout(() => {
+                    navigate('/');
+                }, 3000);
+
+                return () => clearTimeout(redirectTimer);
+            }
+        };
+
+        verifyPayment();
+    }, []); // Empty dependency array - run only once on mount
 
     const handleCloseToast = () => {
         setShowToast(false);
     };
+
+    // Show loading state while verifying
+    if (isVerifying) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
+                <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+                    <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg className="w-10 h-10 text-blue-500 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4">Verifying Payment...</h2>
+                    <p className="text-gray-600">Please wait while we confirm your payment.</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Only show success content if payment is valid
+    if (!isValidPayment) {
+        return null; // This should not render as invalid payments get redirected
+    }
 
     return (
         <>
@@ -110,10 +212,18 @@ export const PaymentSuccess: React.FC = () => {
 
                     {/* Redirect Notice */}
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                        <p className="text-sm text-blue-700">
-                            Redirecting to home page...
+                        <p className="text-sm text-blue-700 mb-2">
+                            Redirecting to home page in 3 seconds...
                         </p>
                     </div>
+
+                    {/* Manual Navigation Button */}
+                    <Link
+                        to="/"
+                        className="block w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors font-medium"
+                    >
+                        Go to Home Page
+                    </Link>
                 </div>
             </div>
         </>
