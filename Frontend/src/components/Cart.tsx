@@ -7,65 +7,6 @@ import { Trash2, Plus, Minus } from 'lucide-react';
 
 const Cart = () => {
     const { items, removeFromCart, updateQuantity, getTotalPrice} = useCart();
-    
-    const handleBuy = async () => {
-        try {
-            const total = getTotalPrice();
-            
-            if (total <= 0) {
-                alert("Cart is empty or invalid total amount");
-                return;
-            }
-
-            // Call backend to initialize payment
-            const response = await fetch("http://localhost:4000/api/payment/initialize-esewa", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ 
-                    total_amount: total,
-                    // Optionally send cart items for backend validation
-                    cart_items: items 
-                }),
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                // Mark that payment is being initiated (for validation later)
-                sessionStorage.setItem('payment_initiated', 'true');
-                sessionStorage.setItem('payment_amount', total.toString());
-                sessionStorage.setItem('payment_timestamp', Date.now().toString());
-                
-                // Create and submit form to eSewa
-                const form = document.createElement("form");
-                form.method = data.payment.method;
-                form.action = data.payment.action;
-                form.target = "_self"; // Navigate in same window
-
-                // Add all form fields
-                Object.entries(data.payment.fields).forEach(([key, value]) => {
-                    const input = document.createElement("input");
-                    input.type = "hidden";
-                    input.name = key;
-                    input.value = String(value); // Convert to string to fix TypeScript error
-                    form.appendChild(input);
-                });
-
-                document.body.appendChild(form);
-                form.submit(); // This will redirect to eSewa
-                
-                // Clean up
-                document.body.removeChild(form);
-            } else {
-                alert("Payment initialization failed: " + data.message);
-            }
-        } catch (error) {
-            console.error("Payment error:", error);
-            alert("Payment initialization failed. Please check your connection and try again.");
-        }
-    };
 
     if (items.length === 0) {
         return (
@@ -171,13 +112,12 @@ const Cart = () => {
                             </div>
                         </div>
 
-                        <button 
-                            onClick={handleBuy} 
-                            className="w-full bg-[#60bb46] text-white py-3 rounded-lg hover:bg-[#4a9635] transition-colors mb-3 disabled:bg-gray-400"
-                            disabled={items.length === 0}
+                        <Link 
+                            to="/checkout" 
+                            className="w-full bg-[#60bb46] text-white py-3 rounded-lg hover:bg-[#4a9635] transition-colors mb-3 disabled:bg-gray-400 block text-center font-medium"
                         >
-                            Pay with eSewa
-                        </button>
+                            Proceed to Checkout
+                        </Link>
                     </div>
                 </div>
             </div>

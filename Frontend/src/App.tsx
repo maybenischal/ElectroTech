@@ -13,6 +13,7 @@ import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { SearchProvider } from "./context/SearchContext";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 import Contactus from "./Pages/Contactus";
 import Profile from "./Pages/Profile";
 import SearchResults from "./Pages/SearchResults";
@@ -40,6 +41,7 @@ function App() {
               <Route path="/search" element={<SearchResults />} />
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
               <Route path="/contact" element={<Contactus />} />
               <Route path="/payment/success" element={<PaymentSuccess />} />
               <Route path="/payment/failed" element={<PaymentFailure />} />

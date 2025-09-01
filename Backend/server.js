@@ -6,6 +6,7 @@ import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import paymentRouter from "./routes/paymentRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 
 //App Config
 const app = express();
@@ -21,6 +22,7 @@ connectCloudinary();
 app.use("/api/payment", paymentRouter);
 app.use("/api/user", userRouter);
 app.use("/api/product", productRouter);
+app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to ElectroTech Backend");

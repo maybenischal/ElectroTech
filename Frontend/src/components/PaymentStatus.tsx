@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../hooks/useAuth';
 
 // Toast Component
-const Toast = ({ message, type = 'success', onClose }) => {
+interface ToastProps {
+    message: string;
+    type?: 'success' | 'error';
+    onClose: () => void;
+}
+
+const Toast: React.FC<ToastProps> = ({ message, type = 'success', onClose }) => {
     return (
         <div className={`fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 transform translate-x-0 ${
             type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
@@ -33,6 +40,7 @@ export const PaymentSuccess: React.FC = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const { clearCart } = useCart();
+    const { user } = useAuth();
     const [showToast, setShowToast] = useState(false);
     const [isValidPayment, setIsValidPayment] = useState(false);
     const [isVerifying, setIsVerifying] = useState(true);
@@ -90,6 +98,46 @@ export const PaymentSuccess: React.FC = () => {
                 if (data.success && data.valid) {
                     setIsValidPayment(true);
                     setIsVerifying(false);
+                    
+                    // Create order with cart data after payment verification
+                    try {
+                        const cartItems = JSON.parse(sessionStorage.getItem('cart_items') || '[]');
+                        const customerInfo = JSON.parse(sessionStorage.getItem('customer_info') || '{}');
+                        
+                        if (cartItems.length > 0) {
+                            const orderResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/order/create-from-payment`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    transactionData: {
+                                        transaction_uuid: transactionId,
+                                        transaction_code: transactionId,
+                                        total_amount: amount
+                                    },
+                                    cartItems: cartItems,
+                                    userId: customerInfo.userId || user?.id || null,
+                                    customerEmail: customerInfo.email || user?.email || null,
+                                    customerName: customerInfo.name || user?.name || null
+                                })
+                            });
+
+                            const orderData = await orderResponse.json();
+                            if (orderData.success) {
+                                console.log('Order created successfully:', orderData.order.orderNumber);
+                            } else {
+                                console.error('Failed to create order:', orderData.message);
+                            }
+                        }
+                        
+                        // Clean up session storage
+                        sessionStorage.removeItem('cart_items');
+                        sessionStorage.removeItem('cart_total');
+                        sessionStorage.removeItem('customer_info');
+                    } catch (orderError) {
+                        console.error('Error creating order:', orderError);
+                    }
                     
                     // Clear cart on successful payment verification
                     clearCart();

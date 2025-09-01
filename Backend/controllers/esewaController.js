@@ -111,6 +111,9 @@ export const handlePaymentSuccess = async (req, res) => {
         if (response.data.status === "COMPLETE") {
             console.log("Payment verified successfully");
             
+            // Note: Order creation is now handled by the frontend PaymentSuccess component
+            // to ensure cart data is properly included
+            
             // REDIRECT TO PAYMENT SUCCESS PAGE WITH TRANSACTION DETAILS
             res.redirect(`${FRONTEND_URL}/payment/success?transaction_id=${decodedData.transaction_code}&amount=${decodedData.total_amount}`);
         } else {
