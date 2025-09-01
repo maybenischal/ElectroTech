@@ -271,23 +271,6 @@ export const verifyTransaction = async (req, res) => {
             });
         }
 
-        // 7. TODO: Database checks (implement when you have a transactions table)
-        // - Check if transaction already exists in database
-        // - Verify it hasn't been processed already
-        // - Check against user's order history
-        /*
-        const existingTransaction = await TransactionModel.findOne({ 
-            transaction_id: transaction_id 
-        });
-        if (existingTransaction && existingTransaction.status === 'completed') {
-            return res.json({
-                success: true,
-                valid: false,
-                message: "Transaction already processed"
-            });
-        }
-        */
-
         // If all validations pass
         console.log(`Transaction verification successful: ${transaction_id}`);
         
