@@ -7,7 +7,6 @@ import Orders from "./pages/Orders"
 import { Route, Routes } from "react-router-dom"
 import Login from "./Components/Login"
 import { ToastContainer } from 'react-toastify';
-import UserProfile from "./pages/UserProfile"
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -35,7 +34,6 @@ const App = () => {
               <Route path="/orders" element={<Orders />} />
               <Route path="/products/add" element={<AddProducts token={token} />} />
               <Route path="/products/list" element={<ListProducts token={token} />} />
-              <Route path="/profile" element={<UserProfile />} />
             </Routes>
           </main>
         </div>

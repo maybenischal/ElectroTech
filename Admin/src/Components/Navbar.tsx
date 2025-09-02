@@ -43,12 +43,9 @@ const Navbar = ({ setToken }: NavbarProps) => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
 
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
 
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem asChild>
-                                <Link to="/profile">Profile </Link>
-                            </DropdownMenuItem>
+                           
                             <DropdownMenuItem onClick={handleLogout} className="text-red-700 cursor-pointer">
                                 Logout
                             </DropdownMenuItem>
