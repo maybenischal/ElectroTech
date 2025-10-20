@@ -1,6 +1,7 @@
 // context/CartContext.tsx
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer} from 'react';
 import { slugify } from '../utils/slugify';
+import type { ReactNode } from 'react';
 
 // Types
 export interface CartItem {
